@@ -24,7 +24,11 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://mobile-s3-test-assets.aws-sdlc-bonial.com/\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://mobile-s3-test-assets.aws-sdlc-bonial.com/\""
+            )
         }
         release {
             isMinifyEnabled = false
@@ -33,7 +37,11 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField("String", "BASE_URL", "\"https://mobile-s3-test-assets.aws-sdlc-bonial.com/\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://mobile-s3-test-assets.aws-sdlc-bonial.com/\""
+            )
         }
     }
     compileOptions {
@@ -68,6 +76,8 @@ dependencies {
     implementation(libs.bundles.koin)
 
     implementation(libs.bundles.ktor)
+
+    implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
 
