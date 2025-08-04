@@ -69,7 +69,8 @@ suspend fun parseBrochuresFlat(
                         imageUrl = imageUrl,
                         publisherName = publisherName,
                         isExpired = isExpired,
-                        distanceKm = distanceKm
+                        distanceKm = distanceKm,
+                        isPremium = type.equals("brochurePremium")
                     )
                 )
             }

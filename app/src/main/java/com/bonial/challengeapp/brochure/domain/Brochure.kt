@@ -7,5 +7,6 @@ data class Brochure(
     val imageUrl: String?,
     val publisherName: String,
     val isExpired: Boolean,
-    val distanceKm: Double
+    val distanceKm: Double,
+    val isPremium: Boolean
 )
