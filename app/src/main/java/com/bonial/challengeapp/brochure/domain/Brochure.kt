@@ -1,12 +1,14 @@
 package com.bonial.challengeapp.brochure.domain
 
+import java.time.ZonedDateTime
+
 
 data class Brochure(
-    val id: Long,
-    val title: String,
+    val id: String,
+    val title: String?,
     val imageUrl: String?,
     val publisherName: String,
-    val isExpired: Boolean,
+    val publishedUntil: ZonedDateTime,
     val distanceKm: Double,
-    val isPremium: Boolean
+    val type: BrochureContentType
 )

@@ -21,9 +21,11 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.bonial.challengeapp.R
 import com.bonial.challengeapp.brochure.domain.Brochure
+import com.bonial.challengeapp.brochure.domain.BrochureContentType
 import com.bonial.challengeapp.brochure.presentation.model.BrochureUI
 import com.bonial.challengeapp.brochure.presentation.model.toBrochureUi
 import com.bonial.challengeapp.ui.theme.ChallengeAppTheme
+import java.time.ZonedDateTime
 
 @Composable
 fun BrochureListItem(
@@ -37,16 +39,16 @@ fun BrochureListItem(
             .clickable { onClick() }
             .padding(16.dp)
     ) {
-        if(!isPreview)
-        brochureUi.imageUrl?.let {
-            CoilImage(
-                imageUrl = it,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(180.dp)
-                    .clip(RoundedCornerShape(8.dp))
-            )
-        }
+        if (!isPreview)
+            brochureUi.imageUrl?.let {
+                CoilImage(
+                    imageUrl = it,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(180.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                )
+            }
         else
             Image(
                 painter = painterResource(id = R.drawable.ic_placeholder),
@@ -75,7 +77,7 @@ fun BrochureListItem(
 private fun BrochureListItemPreview() {
     ChallengeAppTheme {
         BrochureListItem(
-           isPreview =  true,
+            isPreview = true,
             brochureUi = previewBrochure,
             onClick = { /*TODO*/ },
             modifier = Modifier.background(
@@ -84,12 +86,13 @@ private fun BrochureListItemPreview() {
         )
     }
 }
+
 internal val previewBrochure = Brochure(
     imageUrl = null,
     id = "De-01",
     title = "ALDI",
     publisherName = "ALDI",
-    isExpired = false,
+    publishedUntil = ZonedDateTime.now(),
     distanceKm = 4.0,
-    isPremium = false
+    type = BrochureContentType.BROCHURE
 ).toBrochureUi()

@@ -1,6 +1,8 @@
 package com.bonial.challengeapp.brochure.presentation.model
 
 import com.bonial.challengeapp.brochure.domain.Brochure
+import com.bonial.challengeapp.brochure.domain.BrochureContentType
+import java.time.ZonedDateTime
 
 data class BrochureUI(
     val imageUrl: String?,
@@ -14,8 +16,8 @@ fun Brochure.toBrochureUi(): BrochureUI {
     return BrochureUI(
         imageUrl = imageUrl,
         publisherName = publisherName,
-        isExpired = isExpired,
+        isExpired = publishedUntil.isBefore(ZonedDateTime.now()),
         distanceKm = distanceKm,
-        isPremium = isPremium
+        isPremium = type == BrochureContentType.BROCHURE_PREMIUM
     )
 }
