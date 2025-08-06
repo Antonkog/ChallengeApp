@@ -8,9 +8,9 @@ enum class BrochureContentType {
 
     companion object {
         fun fromString(value: String?): BrochureContentType = when (value) {
-            Contants.SuperBannerCarouselType -> SUPER_BANNER_CAROUSEL
-            Contants.BrochureType -> BROCHURE
-            Contants.BrochurePremiumType -> BROCHURE_PREMIUM
+            Constants.SUPER_BANNER_CAROUSEL_TYPE -> SUPER_BANNER_CAROUSEL
+            Constants.BROCHURE_TYPE -> BROCHURE
+            Constants.BROCHURE_PREMIUM_TYPE -> BROCHURE_PREMIUM
             else -> UNKNOWN
         }
     }

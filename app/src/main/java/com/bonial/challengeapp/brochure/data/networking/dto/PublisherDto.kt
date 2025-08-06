@@ -2,6 +2,7 @@ package com.bonial.challengeapp.brochure.data.networking.dto
 
 import kotlinx.serialization.Serializable
 
+@Suppress("UNUSED")
 @Serializable
 data class PublisherDto(
     val id: String? = null,

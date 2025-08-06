@@ -1,7 +1,7 @@
 package com.bonial.challengeapp.brochure.data.mappers
 
 
-import com.bonial.challengeapp.brochure.domain.Contants
+import com.bonial.challengeapp.brochure.domain.Constants
 import com.bonial.challengeapp.brochure.data.networking.dto.BrochureContainerDto
 import com.bonial.challengeapp.brochure.data.networking.dto.BrochureResponseDto
 import com.bonial.challengeapp.brochure.domain.Brochure
@@ -18,12 +18,12 @@ fun BrochureResponseDto.toBrochures(): List<Brochure> {
 fun BrochureContainerDto.toBrochures(): List<Brochure> {
     return content.map { contentDto ->
 
-        val formatter = DateTimeFormatter.ofPattern(Contants.DateTimeFormat)
+        val formatter = DateTimeFormatter.ofPattern(Constants.DATE_TIME_FORMAT)
         val parsedUntil = ZonedDateTime.parse(contentDto.publishedUntil, formatter)
 
         Brochure(
             imageUrl = when (contentType) {
-                Contants.SuperBannerCarouselType -> contentDto.imageUrl
+                Constants.SUPER_BANNER_CAROUSEL_TYPE -> contentDto.imageUrl
                 else -> contentDto.brochureImage
             },
             publisherName = contentDto.publisher?.name,

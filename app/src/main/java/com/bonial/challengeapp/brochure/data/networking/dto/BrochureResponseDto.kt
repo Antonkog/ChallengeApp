@@ -3,6 +3,7 @@ package com.bonial.challengeapp.brochure.data.networking.dto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Suppress("UNUSED")
 @Serializable
 data class BrochureResponseDto(
     @SerialName("_embedded")
