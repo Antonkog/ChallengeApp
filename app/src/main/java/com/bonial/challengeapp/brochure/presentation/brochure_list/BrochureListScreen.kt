@@ -1,5 +1,6 @@
 package com.bonial.challengeapp.brochure.presentation.brochure_list
 
+import android.R.attr.checked
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,10 +27,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.bonial.challengeapp.R
 import com.bonial.challengeapp.brochure.presentation.brochure_list.components.BrochureListItem
 import com.bonial.challengeapp.brochure.presentation.brochure_list.components.previewBrochure
+import com.bonial.challengeapp.core.presentation.util.TestTags
 import com.bonial.challengeapp.core.presentation.util.itemsIndexedWithSpan
 import com.bonial.challengeapp.ui.theme.ChallengeAppTheme
 
@@ -44,7 +49,8 @@ fun BrochureListScreen(
 
     val filteredBrochures = remember(state.brochures, filterEnabled) {
         if (filterEnabled) {
-            state.brochures.filter { it.distanceKm < 5.0 }
+            // Filter out brochures with distance > 5.0 km
+            state.brochures.filter { it.distanceKm <= 5.0 }
         } else {
             state.brochures
         }
@@ -55,13 +61,19 @@ fun BrochureListScreen(
 
     if (state.isLoading) {
         Box(
-            modifier = modifier.fillMaxSize(),
+            modifier = modifier
+                .fillMaxSize()
+                .testTag(TestTags.BROCHURE_LIST_LOADING),
             contentAlignment = Alignment.Center
         ) {
             CircularProgressIndicator()
         }
     } else {
-        Column(modifier = modifier.fillMaxSize()) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .testTag(TestTags.BROCHURE_LIST_SCREEN)
+        ) {
 
             // Filter toggle
             Row(
@@ -69,8 +81,10 @@ fun BrochureListScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
+                    .testTag(TestTags.BROCHURE_LIST_FILTER_TOGGLE)
             ) {
-                Text("Show only in radius: 5km", modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurface)
+
+                Text(text = stringResource(R.string.filter_nearby), modifier = Modifier.weight(1f), color = MaterialTheme.colorScheme.onSurface)
                 Switch(
                     checked = filterEnabled,
                     onCheckedChange = { filterEnabled = it }
@@ -79,7 +93,9 @@ fun BrochureListScreen(
 
             LazyVerticalGrid(
                 columns = GridCells.Fixed(columnCount),
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .testTag(TestTags.BROCHURE_LIST_CONTENT),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 contentPadding = PaddingValues(8.dp)
@@ -92,14 +108,16 @@ fun BrochureListScreen(
                             1
                         )
                     }
-                ) { _, brochureUI ->
+                ) { index, brochureUI ->
                     BrochureListItem(
                         isPreview,
                         brochureUi = brochureUI,
                         onClick = {
                             onAction(BrochureListAction.OnBrochureClick(brochureUI))
                         },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("${TestTags.BROCHURE_LIST_ITEM}_$index")
                     )
                 }
             }

@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.bonial.challengeapp.brochure.presentation.brochure_delails.BrochureDetailScreen
 import com.bonial.challengeapp.brochure.presentation.brochure_list.BrochureListAction
@@ -20,6 +21,7 @@ import com.bonial.challengeapp.brochure.presentation.brochure_list.BrochureListE
 import com.bonial.challengeapp.brochure.presentation.brochure_list.BrochureListScreen
 import com.bonial.challengeapp.brochure.presentation.brochure_list.BrochureViewModel
 import com.bonial.challengeapp.core.presentation.util.ObserveAsEvents
+import com.bonial.challengeapp.core.presentation.util.TestTags
 import com.bonial.challengeapp.core.presentation.util.toString
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -48,7 +50,9 @@ fun AdaptiveBrochureListDetailPane(
     NavigableListDetailPaneScaffold(
         navigator = navigator,
         listPane = {
-            AnimatedPane {
+            AnimatedPane(
+                modifier = Modifier.testTag("${TestTags.ADAPTIVE_PANE}_list")
+            ) {
                 BrochureListScreen(
                     isPreview = false,
                     state = state,
@@ -68,10 +72,12 @@ fun AdaptiveBrochureListDetailPane(
             }
         },
         detailPane = {
-            AnimatedPane {
+            AnimatedPane(
+                modifier = Modifier.testTag("${TestTags.ADAPTIVE_PANE}_detail")
+            ) {
                 BrochureDetailScreen(state = state)
             }
         },
-        modifier = modifier
+        modifier = modifier.testTag(TestTags.ADAPTIVE_PANE)
     )
 }

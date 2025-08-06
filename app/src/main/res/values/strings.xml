@@ -7,5 +7,6 @@
     <string name="error_serialization">Couldn\'t serialize or deserialize data.</string>
     <string name="expired">Expired</string>
     <string name="distance_km">Distance: %1$s km</string>
+    <string name="filter_nearby">Show only within 5km or less</string>
     <string name="cd_brochure_image">Brochure Image</string>
 </resources>
