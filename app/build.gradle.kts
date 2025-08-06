@@ -1,6 +1,3 @@
-import org.gradle.kotlin.dsl.androidTestImplementation
-import org.gradle.kotlin.dsl.testImplementation
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -85,6 +82,7 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.truth)
     androidTestImplementation(libs.truth)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
