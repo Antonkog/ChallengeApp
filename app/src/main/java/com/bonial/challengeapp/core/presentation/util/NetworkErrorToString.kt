@@ -4,6 +4,12 @@ import android.content.Context
 import com.bonial.challengeapp.R
 import com.bonial.challengeapp.core.domain.util.NetworkError
 
+/**
+ * Converts a NetworkError enum to a localized error message string.
+ *
+ * @param context The Android context used to retrieve the string resource.
+ * @return A localized string representation of the network error.
+ */
 fun NetworkError.toString(context: Context): String {
     val resId = when(this) {
         NetworkError.REQUEST_TIMEOUT -> R.string.error_request_timeout

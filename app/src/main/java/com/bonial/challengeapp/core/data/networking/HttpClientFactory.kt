@@ -16,6 +16,16 @@ import kotlinx.serialization.json.Json
 
 object HttpClientFactory {
 
+    /**
+     * Creates a new [HttpClient] with the specified engine and standard configuration.
+     * The client is configured with:
+     * - Content negotiation using JSON
+     * - Default request content type set to JSON
+     * - Logging for all HTTP requests and responses
+     *
+     * @param engine The HTTP client engine to use
+     * @return A configured [HttpClient] instance
+     */
     fun create(engine: HttpClientEngine): HttpClient {
         return HttpClient(engine) {
             install(ContentNegotiation) {
@@ -31,12 +41,6 @@ object HttpClientFactory {
 
             defaultRequest {
                 contentType(ContentType.Application.Json)
-            }
-
-            install(HttpTimeout) {
-                requestTimeoutMillis = 15_000
-                connectTimeoutMillis = 10_000
-                socketTimeoutMillis = 15_000
             }
 
             install(Logging) {
