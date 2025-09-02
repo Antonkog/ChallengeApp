@@ -84,6 +84,7 @@ This architecture provides a unidirectional data flow, making the app more predi
 - **Truth**: Fluent assertions library
 - **Espresso**: UI testing framework
 - **Compose Testing**: For testing Compose UI components
+- **Robolectric + Roborazzi**: Screenshot testing on the JVM (no emulator required)
 
 ## Getting Started
 
@@ -93,6 +94,15 @@ This architecture provides a unidirectional data flow, making the app more predi
 2. Open the project in Android Studio
 3. Sync Gradle files
 4. Run the app on an emulator or physical device
+
+### Screenshot testing (Robolectric + Roborazzi)
+
+- To record screenshots (first run or when updating baselines):
+  - ./gradlew test -Droborazzi.test.record=true
+- To verify screenshots against baselines:
+  - ./gradlew test
+
+Screenshots and baselines will be generated under app/build/outputs/roborazzi and/or under src/test/resources/roborazzi depending on your configuration. The included sample test is BrochureListScreenshotTest which captures the empty state of BrochureListScreen.
 
 ## Minimum Requirements
 
