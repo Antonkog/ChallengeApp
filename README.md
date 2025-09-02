@@ -84,6 +84,7 @@ This architecture provides a unidirectional data flow, making the app more predi
 - **Truth**: Fluent assertions library
 - **Espresso**: UI testing framework
 - **Compose Testing**: For testing Compose UI components
+- **Turbine**: For testing Kotlin Flows (JVM unit tests)
 - **Robolectric + Roborazzi**: Screenshot testing on the JVM (no emulator required)
 
 ## Getting Started
